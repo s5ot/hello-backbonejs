@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset-"utf-8">
+        <title>hello-backbonejs</title>
+    </head>
+    <body>
+        <script src="./jquery-1.9.1.js"></script>
+        <script src="./json2.js"></script>
+        <script src="./underscore.js"></script>
+        <script src="./backbone.js"></script>
+        <script>
+            (function($) {
+                var ListView = Backbone.View.extend({
+                    el: $('body'),
+
+                    events: {
+                        'click button#add': 'addItem'
+                    },
+
+                    initialize: function() {
+                        _.bindAll(this, 'render', 'addItem');
+
+                        this.counter = 0;
+                        this.render();
+                    },
+
+                    render: function() {
+                        $(this.el).append("<button id='add'>Add list item</button>");
+                        $(this.el).append("<ul></ul>");
+                    },
+
+                    addItem: function() {
+                        this.counter++;
+                        $('ul', this.el).append("<li>hello world"+this.counter+"</li>");
+                    }
+                });
+
+                var listView = new ListView();
+            })(jQuery);
+        </script>
+    </body>
+</html>
